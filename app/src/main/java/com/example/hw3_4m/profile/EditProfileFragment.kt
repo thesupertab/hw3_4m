@@ -1,4 +1,4 @@
-package com.example.hw3_4m.ui.notifications
+package com.example.hw3_4m.profile
 
 import android.os.Bundle
 import android.view.LayoutInflater

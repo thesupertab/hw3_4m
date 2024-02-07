@@ -1,13 +1,14 @@
-package com.example.hw3_4m
+package com.example.homework4_4
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.hw3_4m.databinding.ActivityMainBinding
+import com.example.homework4_4.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,10 +27,27 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.taskFragment
+                R.id.navigation_home, R.id.navigation_notifications, R.id.navigation_profile
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener{ controller, destinetion, args ->
+            when (destinetion.id) {
+                R.id.splashFragment -> {
+                    binding.navView.visibility = View.GONE
+                }
+                R.id.onboardingFragment -> {
+                    binding.navView.visibility = View.GONE
+                }
+                else -> binding.navView.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

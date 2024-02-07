@@ -32,6 +32,11 @@ class TaskAdapter : Adapter<TaskAdapter.TaskViewHolder>() {
         return holder.bind(list[position])
     }
 
+    fun setOnItemClickListener(any: Any) {
+
+
+    }
+
     inner class TaskViewHolder(private var binding: ItemTaskBinding) : ViewHolder(binding.root) {
         fun bind(task: Task) {
             binding.titleTv.text = task.title
